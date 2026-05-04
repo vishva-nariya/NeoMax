@@ -119,3 +119,27 @@
     
 })(jQuery);
 
+function initParticles() {
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = 15;
+
+    for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+
+        // Random horizontal position
+        particle.style.left = Math.random() * 100 + '%';
+
+        // Start particles at random vertical positions throughout the section
+        particle.style.top = Math.random() * 100 + '%';
+
+        // Random animation delay for natural movement
+        particle.style.animationDelay = Math.random() * 20 + 's';
+
+        // Random animation duration for variety
+        particle.style.animationDuration = (18 + Math.random() * 8) + 's';
+
+        particlesContainer.appendChild(particle);
+    }
+}
+initParticles();

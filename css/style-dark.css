@@ -1,7 +1,7 @@
 /********** Template CSS - Dark Theme **********/
 :root {
     --primary: #06A3DA;
-    --secondary: #F57E57;
+    --secondary: #79C24C;
     --light: #1E2A3A;       /* was #EEF9FF — now a dark navy card bg */
     --dark: #E0EAF4;        /* was #091E3E — now light text for dark bg */
 
@@ -10,15 +10,32 @@
     --bg-surface:    #152132;
     --bg-card:       #1E2A3A;
     --bg-card-hover: #243347;
-    --text-main:     #CBD8E8;
+    --text-main:    #ffffff;
     --text-muted:    #7A94AD;
     --border-color:  #2A3F55;
+
+
+	--carbon-dark: #121212;
+	--carbon-medium: #1a1a1a;
+	--carbon-light: #2a2a2a;
+	--metal-dark: #3a3a3a;
+	--metal-light: #4a4a4a;
+	--accent-red: #ff3333;
+	--accent-blue: #00a8ff;
+	--accent-green: #00ff88;
+	--accent-purple: #9945ff;
+	--accent-cyan: #00ffff;
+    --accent-cyan: #00f5ff;
+    --accent-purple: #a855f7;
+    --text-dim: #808080;
 }
 
 /* ── Body & Base ─────────────────────────────────────── */
 body {
     background-color: var(--bg-body) !important;
     color: var(--text-main) !important;
+    position: relative;
+	z-index: 1;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -57,6 +74,7 @@ h6,
     font-family: 'Jost', sans-serif;
     font-weight: 600;
     transition: .5s;
+    border-radius: 8px;
 }
 
 .btn-primary,
@@ -67,11 +85,13 @@ h6,
 .btn-primary:hover {
     background: var(--secondary);
     border-color: var(--secondary);
+     color: #FFFFFF !important; 
 }
 
 .btn-secondary:hover {
     background: var(--primary);
     border-color: var(--primary);
+    color: #FFFFFF !important;
 }
 
 .btn-square {
@@ -164,15 +184,33 @@ nav.navbar.bg-white {
 
 .navbar-light .navbar-nav .nav-link {
     font-family: 'Jost', sans-serif;
-    padding: 35px 15px;
+    padding: 12px 24px;
     font-size: 18px;
     color: var(--text-main) !important;
     outline: none;
     transition: .5s;
+    position:relative;
+}
+/* Underline */
+.navbar-light .navbar-nav .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 6px; /* tweak if needed */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--primary), #9945ff);
+    transition: width 0.3s ease;
 }
 
+/* Hover + Active underline */
+.navbar-light .navbar-nav .nav-link:hover::before,
+.navbar-light .navbar-nav .nav-link.active::before {
+    width: 70%;
+}
 .sticky-top.navbar-light .navbar-nav .nav-link {
-    padding: 20px 15px;
+    padding: 6px 12px;
 }
 
 .navbar-light .navbar-nav .nav-link:hover,
@@ -312,6 +350,7 @@ nav.navbar.bg-white {
 }
 
 /* ── Service Items ───────────────────────────────────── */
+
 .service-item img,
 .service-item .bg-light,
 .service-item .bg-light h5,
@@ -331,8 +370,10 @@ nav.navbar.bg-white {
     bottom: 0;
     left: 15px;
     right: 15px;
+    inset:0;
     border-radius: 100px / 15px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, .5);
+    /* box-shadow: 0 0 15px rgba(0, 0, 0, .5); */
+    box-shadow: 0 0 25px rgba(153, 69, 255, 0.5);
     opacity: 0;
     transition: .5s;
     z-index: -1;
@@ -448,7 +489,18 @@ nav.navbar.bg-white {
     border-color: var(--border-color) !important;
     color: var(--text-main) !important;
 }
+.form-select {
+    background-color: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    color: var(--text-main) !important;
 
+    /* 🔥 FIX: visible custom arrow */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M1.5 5.5l6.5 6 6.5-6'/%3E%3C/svg%3E") !important;
+
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 14px;
+}
 .form-control::placeholder {
     color: var(--text-muted);
 }
@@ -457,9 +509,10 @@ nav.navbar.bg-white {
 .form-select:focus {
     background-color: var(--bg-card-hover) !important;
     border-color: var(--primary) !important;
-    box-shadow: 0 0 0 0.2rem rgba(6, 163, 218, .25);
+    box-shadow: 0 0 0 0.2rem rgba(153, 69, 255, 0.4);
     color: #fff !important;
 }
+
 
 /* ── Search Modal ────────────────────────────────────── */
 .modal-content {
@@ -495,4 +548,147 @@ a.text-light:hover {
 hr {
     border-color: var(--border-color);
     opacity: 0.5;
+}
+/* Laptop */
+img.logo-img {
+  width: 260px;
+  height: auto;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+  img.logo-img {
+    width: 200px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 576px) {
+  img.logo-img {
+    width: 160px;
+  }
+}
+/* Reusable Particle Background */
+/* Particle Effect Background */
+.philosophy-particles {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	pointer-events: none;
+    z-index: 0;
+}
+
+.particle {
+	position: absolute;
+	width: 4px;
+	height: 4px;
+	background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+	border-radius: 50%;
+	opacity: 0;
+	animation: float-particle 20s infinite linear;
+}
+
+@keyframes float-particle {
+	0% {
+		transform: translateY(0) rotate(0deg);
+		opacity: 0;
+	}
+
+	5% {
+		opacity: 1;
+	}
+
+	95% {
+		opacity: 1;
+	}
+
+	100% {
+		transform: translateY(-100vh) rotate(720deg);
+		opacity: 0;
+	}
+}
+
+/* Animated Prism Line */
+.prism-line {
+	width: 100%;
+	height: 2px;
+	margin: 0 auto 60px;
+	position: relative;
+	overflow: hidden;
+	background: var(--carbon-medium);
+}
+
+.prism-line::before {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -100%;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(90deg,
+			transparent,
+			var(--accent-red) 20%,
+			var(--accent-blue) 40%,
+			var(--accent-green) 60%,
+			var(--accent-purple) 80%,
+			transparent);
+
+	animation: prismSweep 4s ease-in-out infinite;
+}
+@keyframes prismSweep {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}.neon-outline {
+    transition: all 0.3s ease;
+}
+
+/* Hover state */
+.neon-outline:hover {
+    outline: 2px solid var(--accent-purple);
+    outline-offset: 0; /* IMPORTANT: keeps it tight */
+    
+    box-shadow:
+        0 0 8px rgba(153, 69, 255, 0.6),
+        0 0 18px rgba(153, 69, 255, 0.4);
+}
+
+.service-card {
+    position: relative;
+    border-radius: 12px;
+    background: var(--bg-light, #f8f9fa);
+    border: 1px solid transparent;
+    overflow: hidden;
+    transition: all 0.4s ease;
+}.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 2px;
+    width: 100%;
+    background: linear-gradient(
+        90deg,
+        var(--accent-purple),
+        var(--accent-blue),
+        var(--accent-green)
+    );
+
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}.service-card:hover::before {
+    transform: scaleX(1);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--accent-purple);
+    box-shadow: 0 20px 40px rgba(153, 69, 255, 0.2);
 }
